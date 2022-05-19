@@ -1,11 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+/**
+ * @type {import('next').NextConfig}
+ */
+ const nextConfig = {
+  domains: ["links.papareact.com", "i.ibb.co", "a0.muscache.com",]
 }
 
-next.config
-module.exports = {
-  images: {
-    domains: ["links.papareact.com", "i.ibb.co", "a0.muscache.com",],
-  }  
-}
+export default nextConfig
