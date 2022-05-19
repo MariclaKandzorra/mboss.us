@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "package-name": "git+https://MariclaKandzorra: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@gitlab.com/MariclaKandzorra/mboss.us.git"
     "start": "next start",
     "lint": "next lint"
   },
