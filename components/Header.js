@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { GlobeAltIcon, MenuIcon, SearchIcon, UserCircleIcon } from '@heroicons/react/solid'
 
+
 function Header() {
     return (
         <header className="sticky top-0 z-50 grid grid-cols-3 
@@ -11,7 +12,7 @@ function Header() {
             <div className='relative flex items-center h-10 cursor-pointer 
             my-auto hover:shadow-xl active:scale-90 duration-150'>   
             {/* go to flexboxfroggy.com and play! */}
-                <Image 
+                <Image
                   src='https://i.ibb.co/CM7x3FX/1628329259246.png' 
                   layout='fill'
                   objectFit='contain'
