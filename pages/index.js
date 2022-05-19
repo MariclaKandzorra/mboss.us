@@ -37,7 +37,7 @@ export default function HOME({ exploreData, cardsData }) {
         <section className='pt-6'>
           <h2 className='text-4xl font-semibold py-8'>Celebrate Anywhere</h2>
           {/*Pull some data from a server - API endpoints */}
-          <div className='flex space-x-3 sm:visible hover:overflow-contain hidden:overflow-x-scroll p-4 -ml-6'>
+          <div className='flex space-x-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 hover:overflow-contain hidden:overflow-x-scroll p-4 -ml-6'>
           { cardsData?.map(({img, title}) => (
             <MediumCard 
               key={img} 
