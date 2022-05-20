@@ -12,8 +12,8 @@ function Banner() {
             />
 
          <div className='absolute top-1/3 w-full text-center'>
-             <p className='text-3xl text-500 font-semibold 
-             pb-4'>Design your Event and MBOSS.US.</p> 
+             <h-6 className='text-3xl text-500 font-semibold 
+             pb-4'>Design your Event and MBOSS.US.</h-6> 
              <button className='text-purple-500 bg-white px-10 py-5 
              shadow-md rounded-full font-bold my-3 hover:shadow-xl 
              active:scale-90 duration-150'>I get started</button>
