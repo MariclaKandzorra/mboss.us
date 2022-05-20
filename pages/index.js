@@ -12,7 +12,7 @@ export default function HOME({ exploreData, cardsData }) {
     <div className=''>
       <Head>
         <title>Design Event MBOSS.US</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://i.ibb.co/CM7x3FX/1628329259246.png" />
       </Head>
      
     <Header /> {/*You have to create an own Header page in e new components directory*/}
