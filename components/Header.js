@@ -1,14 +1,15 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import { GlobeAltIcon, MenuIcon, SearchIcon, UsersIcon, UserCircleIcon } from '@heroicons/react/solid'
-import { useState} from 'react'
+import React, { useState} from 'react';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
+import { addDays } from 'date-fns';
 
 function Header() {
     const [searchInput, setSearchInput] = useState('');
-    const [startDate, setStartDate] = useState(new Date())
-    const [endDate, setEndDate] = useState(new Date())
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(addDays(new Date(), 1));
     const [noOfGuests, setNoOfGuests] = useState(1);
 
     const handleSelect= (ranges) => {
@@ -19,7 +20,7 @@ function Header() {
     const selectionRange = {
         startDate: startDate,
         endDate: endDate,
-        key: 'Selection',
+        key: 'selection',
     };
 
     
@@ -65,22 +66,30 @@ function Header() {
 
             {searchInput && (
             <div className='flex flex-col col-span-3 mx-auto'>
-                <DateRangePicker ranges={[selectionRange]} 
+                <DateRangePicker 
+                selected={startDate}
+                onChange={(handleSelect)}
+                ranges={[selectionRange]} 
                 minDate={new Date()}
                 rangeColors={["#FD5B61"]}
-                onChange={handleSelect}
-                />                
-            <div clasName='flex items-center border-b mb-4'>    
-                <h2 className='text-2xl flex-grow font-semib'>Number of Guests </h2>
                 
+                />               
+            <div clasName='flex border-b mb-4'>    
+            <td className='flex flex-grow justify-between flex flex-row-reverse space-x-4 space-x-reverse'>
+                <tr className='flex justify-between'>                
+                <h2 className=''>Number of Guests </h2>    
+                </tr>                                            
+                <tr className=''>
                 <UsersIcon className='h-6' />
                 <input 
                     value={noOfGuests}
                     onChange={(e) => setNoOfGuests(e.target.value)}
                     type='number'
                     min={1}
-                    className='w-12 pl-2 text-lg outline-none text-red-400'
+                    className='w-13 pl-2 text-lg outline-none text-red-400'
                 />
+                </tr>
+                </td>
             </div>
             <div>
 

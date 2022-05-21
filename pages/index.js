@@ -47,7 +47,7 @@ export default function HOME({ exploreData, cardsData }) {
           )) }
           </div>
         </section>
-        <section clasName=''> 
+        <section className=''> 
         <LargeCard />    
         </section>
         <section>
