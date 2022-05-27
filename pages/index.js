@@ -16,7 +16,7 @@ export default function HOME({ exploreData, cardsData }) {
       </Head>
      
     <Header /> {/*You have to create an own Header page in e new components directory*/}
-    <Banner />
+    <Banner /> 
    
 
       <main className='max-w-7xl mx-auto px-8 sm:px-16'>
@@ -58,12 +58,10 @@ export default function HOME({ exploreData, cardsData }) {
         <br></br>
         </section>
       </main>
-
-      
       <Footer className=''/>
     
-    </div>
-  );
+    </div> 
+  )
 }
 
 

@@ -1,10 +1,14 @@
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    './pages/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
+    './src/**/*.{html,js}',
+    './components/**/*.{html,js}',
   ],
   theme: {
-    extend: {},
+    important: '#app',
+    prefix: 'tw-',
   },
-  plugins: [],
+  plugins: [
+  ],
 }

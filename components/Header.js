@@ -1,14 +1,25 @@
 import Image from 'next/image';
 import { GlobeAltIcon, MenuIcon, SearchIcon, UsersIcon, UserCircleIcon } from '@heroicons/react/solid'
-import React, { useState} from 'react';
+import React, { useState, useRef, useCallback } from 'react';
+import ReactDom from 'react-dom';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
 import { addDays } from 'date-fns';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { StaticTimePicker } from '@mui/x-date-pickers/StaticTimePicker';
+import {TimePicker} from '@mui/x-date-pickers';
+import {MobileTimePicker} from '@mui/x-date-pickers/MobileTimePicker';
+import {DesktopTimePicker} from '@mui/x-date-pickers/MobileTimePicker';
+import {TextField} from '@mui/material';
+import Stack from '@mui/material/Stack';
 
 function Header() {
+	
     const [searchInput, setSearchInput] = useState('');
-    const [startDate, setStartDate] = useState(new Date());
+    const [time, setTime] = useState(new Date('2022-01-01 12:00'));
+	const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(addDays(new Date(), 1));
     const [noOfGuests, setNoOfGuests] = useState(1);
 
@@ -28,8 +39,7 @@ function Header() {
     return (
         <header className="sticky top-0 z-50 grid grid-cols-3 
          bg-white shadow-md p-5 md:px-10">
-             
-
+            
             {/*Left - Logo*/}
             <div className='relative flex items-center h-10 cursor-pointer 
             my-auto hover:shadow-xl active:scale-90 duration-150'>   
@@ -65,7 +75,9 @@ function Header() {
             </div>
 
             {searchInput && (
-            <div className='flex flex-col col-span-3 mx-auto'>
+			
+            
+			<div className='flex flex-col col-span-3 mx-auto'>
                 <DateRangePicker 
                 selected={startDate}
                 onChange={(handleSelect)}
@@ -92,7 +104,33 @@ function Header() {
                 </td>
             </div>
             <div>
+			<LocalizationProvider dateAdapter={AdapterDateFns}>
+			<Stack spacing={3}>
+			<TimePicker
+				renderInput={(params) => <TextField {...params} />}
+				value={time}
+				label="min/max time"
+				onChange={(newValue) => {
+				setValue(newValue);
+				}}
+				minTime={new Date(0, 0, 0, 8)}
+				maxTime={new Date(0, 0, 0, 18, 45)}
+			/>
+			<TimePicker
+				renderInput={(params) => <TextField {...params} />}
+				label="Disable odd hours"
+				value={time}
+				onChange={(newValue) => {setValue(newValue)}}
+				shouldDisableTime={(timeValue, clockType) => {
+				if (clockType === 'hours' && timeValue % 2) {
+				return true;
+				}
 
+				return false;
+				}}
+			/>
+				</Stack>
+				</LocalizationProvider>
             </div>
             </div>
             )}
@@ -101,4 +139,3 @@ function Header() {
 }
             
 export default Header;
-
