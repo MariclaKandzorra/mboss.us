@@ -9,16 +9,19 @@ import { addDays } from 'date-fns';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticTimePicker } from '@mui/x-date-pickers/StaticTimePicker';
-import {TimePicker} from '@mui/x-date-pickers';
-import {MobileTimePicker} from '@mui/x-date-pickers/MobileTimePicker';
-import {DesktopTimePicker} from '@mui/x-date-pickers/MobileTimePicker';
-import {TextField} from '@mui/material';
+import { TimePicker } from '@mui/x-date-pickers';
+import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { DesktopTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { TextField } from '@mui/material';
 import Stack from '@mui/material/Stack';
+
+
 
 function Header() {
 	
     const [searchInput, setSearchInput] = useState('');
-    const [time, setTime] = useState(new Date('2022-01-01 12:00'));
+    const [time1, setTime1] = useState(new Date('2022-01-01 15:00'));
+	const [time2, setTime2] = useState(new Date('2022-01-01 15:00'));
 	const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(addDays(new Date(), 1));
     const [noOfGuests, setNoOfGuests] = useState(1);
@@ -107,27 +110,30 @@ function Header() {
 			<LocalizationProvider dateAdapter={AdapterDateFns}>
 			<Stack spacing={3}>
 			<TimePicker
-				renderInput={(params) => <TextField {...params} />}
-				value={time}
-				label="min/max time"
+				ampm={false}
+				openTo='hours'
+				views={['hours', 'minutes', 'seconds']}
+				inputFormat='HH:mm:ss'
+				mask='_:_:_'
+				value={time1}
+				label="Event Start Time"
 				onChange={(newValue) => {
-				setValue(newValue);
+				setTime1(newValue);
 				}}
-				minTime={new Date(0, 0, 0, 8)}
-				maxTime={new Date(0, 0, 0, 18, 45)}
+				renderInput={(params) => <TextField {...params} />}
 			/>
 			<TimePicker
-				renderInput={(params) => <TextField {...params} />}
-				label="Disable odd hours"
-				value={time}
-				onChange={(newValue) => {setValue(newValue)}}
-				shouldDisableTime={(timeValue, clockType) => {
-				if (clockType === 'hours' && timeValue % 2) {
-				return true;
-				}
-
-				return false;
+				ampm={false}
+				openTo='hours'
+				views={['hours', 'minutes', 'seconds']}
+				inputFormat='HH:mm:ss'
+				mask='_:_:_'
+				value={time2}
+				label="Event End Time"
+				onChange={(newValue) => {
+				setTime2(newValue);
 				}}
+				renderInput={(params) => <TextField {...params} />}
 			/>
 				</Stack>
 				</LocalizationProvider>
