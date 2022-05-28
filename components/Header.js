@@ -14,17 +14,18 @@ import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { DesktopTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { TextField } from '@mui/material';
 import Stack from '@mui/material/Stack';
+import { useRouter } from 'next/dist/client/router';
 
 
 
 function Header() {
-	
-    const [searchInput, setSearchInput] = useState('');
-    const [time1, setTime1] = useState(new Date('2022-01-01 15:00'));
+	const [searchInput, setSearchInput] = useState('');
+	const [time1, setTime1] = useState(new Date('2022-01-01 15:00'));
 	const [time2, setTime2] = useState(new Date('2022-01-01 15:00'));
 	const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(addDays(new Date(), 1));
     const [noOfGuests, setNoOfGuests] = useState(1);
+	const router = useRouter();
 
     const handleSelect= (ranges) => {
         setStartDate(ranges.selection.startDate)
@@ -37,14 +38,32 @@ function Header() {
         key: 'selection',
     };
 
-    
+    const resetInput= () => {
+		setSearchInput('');
+	};
+	
+	const search = () => {
+		router.push({
+			pathname: '/search',
+			query: {
+				location: searchInput,
+				startDate: startDate.toISOString(),
+				endDate: endDate.toISOString(),
+				noOfGuests,
+                time1: time1.toISOString(),
+				time2: time2.toISOString(),
+			},
+		});
+	};
 
     return (
         <header className="sticky top-0 z-50 grid grid-cols-3 
          bg-white shadow-md p-5 md:px-10">
             
             {/*Left - Logo*/}
-            <div className='relative flex items-center h-10 cursor-pointer 
+            <div 
+			onClick={() => router.push('/')} 
+			className='relative flex items-center h-10 cursor-pointer 
             my-auto hover:shadow-xl active:scale-90 duration-150'>   
             {/* go to flexboxfroggy.com and play! */}
                 <Image
@@ -82,10 +101,11 @@ function Header() {
             
 			<div className='flex flex-col col-span-3 mx-auto'>
                 <DateRangePicker 
+				editableDateInputs={true}
                 selected={startDate}
                 onChange={(handleSelect)}
                 ranges={[selectionRange]} 
-                minDate={new Date()}
+                minDate={new Date()}							
                 rangeColors={["#FD5B61"]}
                 
                 />               
@@ -137,9 +157,15 @@ function Header() {
 			/>
 				</Stack>
 				</LocalizationProvider>
+			</div>
+				<div className='flex'>
+					<button onClick={resetInput} className='flex-grow text-gray-500'>Cancel</button>
+					<button onClick={search} className='flex-grow text-red-400'>Search</button>
+				</div>
             </div>
-            </div>
-            )}
+           
+			
+			)}
         </header>
     );
 }
