@@ -17,9 +17,10 @@ import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/dist/client/router';
 
 
+ 
 
 function Header() {
-	const [searchInput, setSearchInput] = useState('');
+	const [searchInput, setSearchInput] = useState();
 	const [time1, setTime1] = useState(new Date('2022-01-01 15:00'));
 	const [time2, setTime2] = useState(new Date('2022-01-01 15:00'));
 	const [startDate, setStartDate] = useState(new Date());
@@ -39,7 +40,7 @@ function Header() {
     };
 
     const resetInput= () => {
-		setSearchInput('');
+		setSearchInput();
 	};
 	
 	const search = () => {
@@ -168,6 +169,9 @@ function Header() {
 			)}
         </header>
     );
+
+
+	
 }
             
 export default Header;
