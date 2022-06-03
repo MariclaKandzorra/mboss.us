@@ -8,10 +8,12 @@ const router = useRouter();
 
 const{ location, startDate, endDate, time1, time2, noOfGuests } = router.query;
 
-const formStartDate= format(new Date(startDate), 'dd.MM.yyyy');
-const formEndDate= format(new Date(endDate), 'dd.MM.yyyy');
+const formStartDate= format(new Date(startDate), 'dd. MMM yyyy');
+const formEndDate= format(new Date(endDate), 'dd. MMM yyyy');
 const formTime1= format(new Date(time1), 'HH:mm:ss');
 const formTime2= format(new Date(time2), 'HH:mm:ss');
+
+
 
 
     return (
@@ -49,9 +51,6 @@ const formTime2= format(new Date(time2), 'HH:mm:ss');
 				
 				</ section>
 			</main>
-			
-			
-			
 			<Footer />
         </div>
     )

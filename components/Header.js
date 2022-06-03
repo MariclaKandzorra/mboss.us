@@ -16,9 +16,6 @@ import { TextField } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/dist/client/router';
 
-
- 
-
 function Header() {
 	const [searchInput, setSearchInput] = useState();
 	const [time1, setTime1] = useState(new Date('2022-01-01 15:00'));
