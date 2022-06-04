@@ -45,8 +45,8 @@ function Header() {
 			pathname: '/search',
 			query: {
 				location: searchInput,
-				startDate: startDate.toISOString(),
-				endDate: endDate.toISOString(),
+				startDate: startDate.toDateString(),
+				endDate: endDate.toDateString(),
 				noOfGuests,
                 time1: time1.toISOString(),
 				time2: time2.toISOString(),
