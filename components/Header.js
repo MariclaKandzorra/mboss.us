@@ -16,10 +16,14 @@ import { TextField } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/dist/client/router';
 
+
+
+
+
 function Header() {
 	const [searchInput, setSearchInput] = useState();
-	const [time1, setTime1] = useState(new Date('2022-01-01 15:00'));
-	const [time2, setTime2] = useState(new Date('2022-01-01 15:00'));
+	const [time1, setTime1] = useState(new Date('2022-01-01 15:00:00'));
+	const [time2, setTime2] = useState(new Date('2022-01-01 15:00:00'));
 	const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(addDays(new Date(), 1));
     const [noOfGuests, setNoOfGuests] = useState(1);
@@ -78,7 +82,10 @@ function Header() {
                 <input 
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
-                    className='flex-grow pl-5 bg-transparent outline-none text-sm text-gray-500' type='text' placeholder={'Start your search'}/>
+                    className='flex-grow pl-5 bg-transparent outline-none text-sm text-gray-500' 
+					type='text' 
+					placeholder= { {location} | {noOfGuests} || 'Search Location' }
+				/>
                 <SearchIcon className='hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 md:mx-2 shadow-md hover:shadow-xl active:scale-90 duration-150' />
             </div>
 
