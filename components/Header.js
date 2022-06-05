@@ -15,15 +15,16 @@ import { DesktopTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { TextField } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/dist/client/router';
-
+import { parseJSON } from 'date-fns';
 
 
 
 
 function Header() {
+	const utcDate = parseJSON('2022-05-30T15:00:00.000Z, America/New_York');
 	const [searchInput, setSearchInput] = useState();
-	const [time1, setTime1] = useState(new Date('2022-01-01 15:00:00'));
-	const [time2, setTime2] = useState(new Date('2022-01-01 15:00:00'));
+	const [time1, setTime1] = useState(new Date(utcDate));
+	const [time2, setTime2] = useState(new Date(utcDate));
 	const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(addDays(new Date(), 1));
     const [noOfGuests, setNoOfGuests] = useState(1);
