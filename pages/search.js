@@ -1,32 +1,41 @@
 import { useRouter } from 'next/dist/client/router';
-import Header from '../components/Header';
+import Header, { utcDate } from '../components/Header';
 import Footer from '../components/Footer';
 import { format, compareAsc, parseISO } from 'date-fns';
-import { formatInTimeZone, utcToZonedTime } from 'date-fns-tz'
+import { formatInTimeZone, zonedTimeToUtc, utcToZonedTime } from 'date-fns-tz';
+import { parseJSON } from 'date-fns';
 
 function Search() {
-const router = useRouter();
-const{ location, startDate, endDate, time1, time2, noOfGuests } = router.query;
+	const router = useRouter();
+	const{ location, startDate, endDate, time1, time2, noOfGuests } = router.query;
+	
+	const {format} = require('date-fns');
+	const utcDate = parseJSON('2022-05-30T15:00:00.000Z, America/New_York');
+	const timeZone = 'Europe/Rome';
+	const zonedTime = utcToZonedTime(utcDate, timeZone);
+	const pattern = "EE, do MMM yyyy kk:mm:ss 'GMT+02:00'";
+	const output = format(zonedTime, pattern, { timeZone: 'Europe/Rome' });
+	
+	
+	const formStartDate = format(new Date(startDate), 'EE, do MMM yyyy');
+	const formEndDate = format(new Date(endDate), 'EE, do MMM yyyy');
+	const formTime1 = format(new Date(time1),'kk:mm:ss');
+	const formTime2 = format(new Date(time2),'kk:mm:ss');
+	const formTzTime1 = utcToZonedTime((time1), 'Europe/Rome', 'kk:mm:ss');
+	const formTzTime2 = utcToZonedTime((time2), 'Europe/Rome', 'kk:mm:ss');
 
-const {format} = require('date-fns');
-const formStartDate = format(new Date(startDate), 'EE, do MMM yyyy')
-const formEndDate = format(new Date(endDate), 'EE, do MMM yyyy');
-const formTime1 = format(new Date(time1),'kk:mm:ss');
-const formTime2 = format(new Date(time2),'kk:mm:ss');
-const formTzTime1 = utcToZonedTime((time1), 'Europe/Rome', 'kk:mm:ss');
-const formTzTime2 = utcToZonedTime((time2), 'Europe/Rome', 'kk:mm:ss');
-const parsedTime = parseISO(time1, time2)
-const parsedDate = parseISO(startDate, endDate)
-const formRange = 'from ' + formStartDate + ' at ' + formTime1 + ' to ' + formEndDate + ' at ' + formTime2 + ' with ' + noOfGuests; 
+	const formRange = 'from ' + formStartDate + ' at ' + formTime1 + ' to ' + formEndDate + ' at ' + formTime2 + ' with ' + noOfGuests; 
 
-console.log(formStartDate);
-console.log(formEndDate);
-console.log(formTime1);
-console.log(formTime2);
-console.log(formTzTime1);
-console.log(formTzTime2);
-console.log(formRange);
-console.log(parsedTime);
+	console.log(formStartDate);
+	console.log(formEndDate);
+	console.log(formTime1);
+	console.log(formTime2);
+	console.log(formTzTime1);
+	console.log(formTzTime2);
+	console.log(formRange);
+	console.log(utcDate);
+	console.log(output);
+	console.log("Node version:", process.version);
 
 
 
