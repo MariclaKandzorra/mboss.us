@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { GlobeAltIcon, MenuIcon, SearchIcon, UsersIcon, UserCircleIcon } from '@heroicons/react/solid'
 import React, { useState, useRef, useCallback } from 'react';
@@ -16,12 +17,20 @@ import { TextField } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/dist/client/router';
 import { parseJSON } from 'date-fns';
-
+import { zonedTimeToUtc, utcToZonedTime, format } from 'date-fns-tz';
 
 
 
 function Header() {
 	const utcDate = parseJSON('2022-05-30T15:00:00.000Z, America/New_York');
+	const timeZone = 'Europe/Rome';
+	const zonedTime = utcToZonedTime(utcDate, timeZone);
+	const pattern = "EE, do MMM yyyy kk:mm:ss 'GMT+02:00'";
+	const output = format(zonedTime, pattern, { timeZone: 'Europe/Rome' });
+	console.log(output);
+	console.log("Node version:", process.version)
+	
+	
 	const [searchInput, setSearchInput] = useState();
 	const [time1, setTime1] = useState(new Date(utcDate));
 	const [time2, setTime2] = useState(new Date(utcDate));
