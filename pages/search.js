@@ -4,9 +4,13 @@ import Footer from '../components/Footer';
 import { format, compareAsc, parseISO } from 'date-fns';
 import { formatInTimeZone, zonedTimeToUtc, utcToZonedTime } from 'date-fns-tz';
 import { parseJSON } from 'date-fns';
+import InfoCard from '../components/InfoCard';
 
-function Search() {
+function Search({ searchResults }) {
 	const router = useRouter();
+	
+	console.log(searchResults);
+	
 	const{ location, startDate, endDate, time1, time2, noOfGuests } = router.query;
 	
 	const {format} = require('date-fns');
@@ -71,12 +75,38 @@ function Search() {
 						</td>
 					</tr>
 					
-				
+					<div>
+					
+					</div>
+					
+					{ searchResults?.map(({ img, location, title, description, star, price, total }) => (
+					
+						<InfoCard 
+							key={img}
+							img={img}
+							location={location}
+							title={title}
+							description={description}
+							star={star} 
+							price={price}
+							total={total}
+						/>
+					))}
 				</ section>
-			</main>
+			  </main>
 			<Footer />
         </div>
     )
 }
 
 export default Search; 
+
+export async function getServerSideProps() {
+	const searchResults = await fetch("https://jsonkeeper.com/b/2J6L").then(res => res.json());
+
+	return {
+		props: {
+			searchResults, 
+		}
+	};
+}
