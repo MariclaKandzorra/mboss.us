@@ -5,6 +5,8 @@ import { format, compareAsc, parseISO } from 'date-fns';
 import { formatInTimeZone, zonedTimeToUtc, utcToZonedTime } from 'date-fns-tz';
 import { parseJSON } from 'date-fns';
 import InfoCard from '../components/InfoCard';
+import MapGL from '../components/MapGL';
+
 
 function Search({ searchResults }) {
 	const router = useRouter();
@@ -93,6 +95,9 @@ function Search({ searchResults }) {
 						/>
 					))}
 				</ section>
+				<section className='min-w-[600px]'> 
+					<MapGL /> 
+				</section>			
 			  </main>
 			<Footer />
         </div>
