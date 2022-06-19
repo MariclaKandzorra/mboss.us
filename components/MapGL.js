@@ -1,15 +1,15 @@
 import Map from '@arcgis/core/Map';
-import Map from '@arcgis/layers/GeoJSONLayer';
-import Map from '@arcgis/views/MapView';
-import Map from '@arcgis/layers/FeatureLayer';
-import Map from '@arcgis/widgets/Directions';
-import Map from '@arcgis/widgets/Search';
-import Map from '@arcgis/widgets/Home';
-import Map from '@arcgis/widgets/Legend';
-import Map from '@arcgis/widgets/Expand';
-import Map from '@arcgis/core/config';
+import GeoJSONLayer from '@arcgis/layers/GeoJSONLayer';
+import MapView from '@arcgis/views/MapView';
+import FeatureLayer from '@arcgis/layers/FeatureLayer';
+import Directions from '@arcgis/widgets/Directions';
+import Search from '@arcgis/widgets/Search';
+import Home from '@arcgis/widgets/Home';
+import Legend from '@arcgis/widgets/Legend';
+import Expand from '@arcgis/widgets/Expand';
+import Config from '@arcgis/core/config';
 
-function MapGL({ Map, GeoJSONLayer, MapView, FeatureLayer, Directions, Search, Home, Legend, Expand, esriConfig }) {
+function MapGL({ Map, GeoJSONLayer, MapView, FeatureLayer, Directions, Search, Home, Legend, Expand, Config }) {
             // If GeoJSON files are not on the same domain as your website, a CORS enabled server
             // or a proxy is required.
             const url = 'VenuesNYC.geojson'
