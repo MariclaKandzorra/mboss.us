@@ -96,7 +96,7 @@ function Search({ searchResults }) {
 					))}
 				</ section>
 				<section className='min-w-[600px]'> 
-					<MapGL /> 
+					<MapGL  /> 
 				</section>			
 			  </main>
 			<Footer />

@@ -1,13 +1,15 @@
+import React from 'react';
+import ReactDom from 'react-dom';
 import Map from '@arcgis/core/Map';
-import GeoJSONLayer from '@arcgis/layers/GeoJSONLayer';
-import MapView from '@arcgis/views/MapView';
-import FeatureLayer from '@arcgis/layers/FeatureLayer';
-import Directions from '@arcgis/widgets/Directions';
-import Search from '@arcgis/widgets/Search';
-import Home from '@arcgis/widgets/Home';
-import Legend from '@arcgis/widgets/Legend';
-import Expand from '@arcgis/widgets/Expand';
-import Config from '@arcgis/core/config';
+import GeoJSONLayer from '@arcgis/core/layers/GeoJSONLayer';
+import MapView from '@arcgis/core/views/MapView';
+import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
+import Directions from '@arcgis/core/idgets/Directions';
+import Search from '@arcgis/core/widgets/Search';
+import Home from '@arcgis/core/widgets/Home';
+import Legend from '@arcgis/core/widgets/Legend';
+import Expand from '@arcgis/core/widgets/Expand';
+import Config from '@arcgis/core/core/config';
 
 function MapGL({ Map, GeoJSONLayer, MapView, FeatureLayer, Directions, Search, Home, Legend, Expand, Config }) {
             // If GeoJSON files are not on the same domain as your website, a CORS enabled server
@@ -186,13 +188,12 @@ function MapGL({ Map, GeoJSONLayer, MapView, FeatureLayer, Directions, Search, H
                 toggleButton.innerText =
                     toggleButton.innerText === "Enable Clustering" ? "Disable Clustering" : "Enable Clustering";
             });
-        };
+        
 	
-    return (
-		{/*M*/}
-		<div id='viewDiv'></div>
-		<div id='infoDiv' class='esri-widget'><button id='cluster' class='esri-button'>Disable Clustering</button><div id='legendDiv'></div></div>
-	);
+			const visibleMap = <div id='viewDiv'></div>;
+			const clusterInfo = <div id='infoDiv' class='esri-widget'><button id='cluster' class='esri-button'>Disable Clustering</button><div id='legendDiv'></div></div>
+			
+    return ({ visibleMap, clusterInfo });
     
 }
 
