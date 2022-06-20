@@ -4,7 +4,7 @@ import Map from '@arcgis/core/Map';
 import GeoJSONLayer from '@arcgis/core/layers/GeoJSONLayer';
 import MapView from '@arcgis/core/views/MapView';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
-import Directions from '@arcgis/core/idgets/Directions';
+import Directions from '@arcgis/core/widgets/Directions';
 import Search from '@arcgis/core/widgets/Search';
 import Home from '@arcgis/core/widgets/Home';
 import Legend from '@arcgis/core/widgets/Legend';
