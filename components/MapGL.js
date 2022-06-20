@@ -190,10 +190,13 @@ function MapGL({ Map, GeoJSONLayer, MapView, FeatureLayer, Directions, Search, H
             });
         
 	
-			const visibleMap = <div id='viewDiv'></div>;
-			const clusterInfo = <div id='infoDiv' class='esri-widget'><button id='cluster' class='esri-button'>Disable Clustering</button><div id='legendDiv'></div></div>
 			
-    return ({ visibleMap, clusterInfo });
+			
+    return (
+		<div id='viewDiv'></div>;
+		<div id='infoDiv' class='esri-widget'><button id='cluster' class='esri-button'>Disable Clustering</button><div id='legendDiv'></div></div>
+	
+	);
     
 }
 
